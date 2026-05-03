@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "graphify": {
+      "command": "/Users/marendra79/.local/bin/graphify",
+      "args": ["mcp"]
+    }
+  },
+  "tools": [
+    {
+      "name": "graphify",
+      "command": "/Users/marendra79/.local/bin/graphify",
+      "description": "Knowledge graph generator and project context analyzer."
+    }
+  ]
+}
