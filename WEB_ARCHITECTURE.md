@@ -547,6 +547,8 @@ Implement the following operations using Firebase JS SDK. Match the Flutter `Fir
   2. `fetch(presignedUrl, { method: 'PUT', body: file, headers: { 'Content-Type': contentType } })`.
   3. Return `publicUrl` on HTTP 200.
 
+> **URL Fix (2026-05-03)**: The Cloud Function `R2_PUBLIC_URL` was set to `https://storage.tkraf.com/tortietask`, producing URLs like `https://storage.tkraf.com/tortietask/uploads/...`. The client now strips the extra `tortietask/` segment and encodes the filename, producing correct URLs like `https://storage.tkraf.com/uploads/<encoded_filename>`. The proper fix is to update `R2_PUBLIC_URL` in the Cloud Function environment to `https://storage.tkraf.com`.
+
 ---
 
 ## 8. Page & Route Map

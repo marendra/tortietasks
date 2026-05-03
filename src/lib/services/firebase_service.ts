@@ -361,11 +361,16 @@ export async function uploadFileToR2(file: File): Promise<UploadResult> {
 		return { success: false, error: message, step: 'presign', details: err };
 	}
 
-	const { presignedUrl, publicUrl } = result.data as {
+	const { presignedUrl, publicUrl: rawPublicUrl } = result.data as {
 		presignedUrl: string;
 		publicUrl: string;
 		key: string;
 	};
+
+	// Fix: remove 'tortietask/' from path and encode filename
+	const publicUrl = rawPublicUrl
+		.replace('storage.tkraf.com/tortietask/', 'storage.tkraf.com/')
+		.replace(/\/([^/]+)$/, (_, filename) => '/' + encodeURIComponent(filename));
 
 	// Step 2: Upload file to R2
 	let response;
